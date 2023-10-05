@@ -6,12 +6,16 @@ import Settings from './components/Settings';
 import CurrentReading from './components/CurrentReading';
 import { login } from './services/login';
 import { Data, LoginData, User } from './types';
+import Notification from './components/Notification';
+import axios from 'axios';
 import './App.css';
 
 const App = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [user, setUser] = useState<User | null>(null);
+  const [notification, setNotification] = useState<string>('');
+  const [notificationType, setNotificationColor] = useState<string>('');
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem(
@@ -41,17 +45,25 @@ const App = () => {
       username,
       password,
     };
-
-    const loggedInUser: User = await login(userCredentials);
-    console.log(loggedInUser);
-    setUser(loggedInUser);
-    window.localStorage.setItem(
-      'loggedFlowMeterAppUser',
-      JSON.stringify(loggedInUser)
-    );
-    setUsername('');
-    setPassword('');
-    navigate('/');
+    try {
+      const loggedInUser: User = await login(userCredentials);
+      console.log(loggedInUser);
+      setUser(loggedInUser);
+      window.localStorage.setItem(
+        'loggedFlowMeterAppUser',
+        JSON.stringify(loggedInUser)
+      );
+      setUsername('');
+      setPassword('');
+      navigate('/');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setNotification(error.response?.data.error);
+      } else {
+        setNotification('An error occured.');
+      }
+      setNotificationColor('error');
+    }
   };
 
   const logoutHandler = () => {
@@ -76,6 +88,7 @@ const App = () => {
           </nav>
         </>
       )}
+      <Notification message={notification} type={notificationType} />
       <Routes>
         <Route
           path="/login"
