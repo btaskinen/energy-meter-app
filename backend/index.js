@@ -1,6 +1,12 @@
+require('dotenv').config();
 const express = require('express');
+const loginRouter = require('./controllers/login');
 
 const app = express();
+
+app.use(express.json());
+
+app.use('/api/login/', loginRouter);
 
 app.get('/', (request, response) => {
   response.send('<h1>The Server is running!<h1>');
