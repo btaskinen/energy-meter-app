@@ -1,3 +1,5 @@
+import './Notification.css';
+
 type Props = {
   message: string;
   type: string;

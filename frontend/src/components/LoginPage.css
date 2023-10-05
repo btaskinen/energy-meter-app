@@ -1,0 +1,15 @@
+.LoginPage {
+  padding-bottom: var(--paddingM);
+}
+
+.LoginPage_form {
+  padding: var(--paddingS);
+}
+
+.LoginPage_inputField {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 14px;
+  max-width: 150px;
+}

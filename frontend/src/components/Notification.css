@@ -1,0 +1,8 @@
+.Notification {
+  padding: var(--paddingS);
+  font-weight: bold;
+}
+
+.Notification.error {
+  color: var(--colorLighter);
+}

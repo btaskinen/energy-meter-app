@@ -1,6 +1,82 @@
+body {
+  --backgroundLight: #f5f3f4;
+  --colorDark: #660708;
+  --colorLighter: #a4161a;
+  --colorLight: #e5383b;
+  --grey: #b1a7a6;
+  --greyLight: #d3d3d3;
+  --greyLighter: #f5f3f4;
+  --border: #161a1d;
+  --borderRadius: 5px;
+  --paddingXS: 7px;
+  --paddingS: 14px;
+  --paddingM: 28px;
+  --paddingL: 42px;
+  margin: 0;
+}
+
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App_title {
+  background-color: var(--colorDark);
+  color: #fff;
+  padding: var(--paddingM);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--colorDark);
+  color: #fff;
+  border-radius: var(--borderRadius);
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 2px solid var(--border);
+}
+
+button:hover {
+  background-color: var(--colorLighter);
+  border-width: 3px;
+  padding: 4px 9px;
+}
+
+button:active {
+  background-color: #fff;
+  color: var(--colorLighter);
+  border-color: var(--colorLighter);
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  padding: var(--paddingXS);
+  border-radius: var(--borderRadius);
+  border: 2px solid var(--border);
+}
+
+input:focus {
+  outline: none;
+  background-color: var(--greyLighter);
+  border-color: var(--colorLighter);
+}
+
+footer {
+  background-color: var(--colorDark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  padding: var(--paddingXS);
+  margin-top: auto;
 }

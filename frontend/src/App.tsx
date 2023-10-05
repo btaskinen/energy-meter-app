@@ -70,7 +70,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Cooling Liquid Flow Rate</h1>
+      <h1 className="App_title">Cooling Liquid Flow Rate</h1>
       {user && (
         <>
           <p>{user.name} is logged in</p>
@@ -135,6 +135,7 @@ const App = () => {
           }
         />
       </Routes>
+      <footer>&copy; Barbara Taskinen</footer>
     </>
   );
 };
