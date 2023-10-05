@@ -6,7 +6,7 @@ body {
   --grey: #b1a7a6;
   --greyLight: #d3d3d3;
   --greyLighter: #f5f3f4;
-  --border: #161a1d;
+  --black: #161a1d;
   --borderRadius: 5px;
   --paddingXS: 7px;
   --paddingS: 14px;
@@ -43,7 +43,7 @@ button {
   border-radius: var(--borderRadius);
   padding: 5px 10px;
   cursor: pointer;
-  border: 2px solid var(--border);
+  border: 2px solid var(--black);
 }
 
 button:hover {
@@ -63,7 +63,7 @@ input {
   font-size: inherit;
   padding: var(--paddingXS);
   border-radius: var(--borderRadius);
-  border: 2px solid var(--border);
+  border: 2px solid var(--black);
 }
 
 input:focus {
@@ -79,4 +79,62 @@ footer {
   font-size: 12px;
   padding: var(--paddingXS);
   margin-top: auto;
+}
+
+.App_container {
+  max-width: 80%;
+  padding: 0 10% var(--paddingS) 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.App_navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--paddingXS) var(--paddingS);
+}
+
+.App_loggedUser {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  font-style: italic;
+  padding: var(--paddingS);
+}
+
+.App_navLink {
+  width: 132px;
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--grey);
+  color: var(--black);
+  padding: var(--paddingXS) var(--paddingS);
+  border-radius: var(--borderRadius);
+  border: 3px solid var(--grey);
+  cursor: pointer;
+}
+
+.App_navLink:hover {
+  background-color: var(--colorLighter);
+  color: #fff;
+  border: 2px solid var(--black);
+}
+
+.App_navLink:active {
+  background-color: var(--colorDark);
+}
+
+.App_navLink.selected {
+  background-color: var(--colorDark);
+  color: #fff;
+  border: 3px solid var(--black);
+}
+
+@media (max-width: 700px) {
+  .App_navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--paddingXS);
+  }
 }

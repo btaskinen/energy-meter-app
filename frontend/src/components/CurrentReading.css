@@ -1,0 +1,19 @@
+.CurrentReading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--paddingS);
+}
+
+.CurrentReading_label {
+  font-weight: bold;
+  padding: var(--paddingS) 0 var(--paddingXS) 0;
+}
+
+.CurrentReading_value {
+  background-color: var(--greyLight);
+  display: inline-block;
+  width: 150px;
+  padding: var(--paddingXS) var(--paddingS);
+  border-radius: var(--borderRadius);
+}

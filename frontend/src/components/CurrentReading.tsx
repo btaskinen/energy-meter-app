@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Data } from '../types';
 import flowDataServices from '../services/flow-data';
 import axios from 'axios';
+import './CurrentReading.css';
 
 type Props = {
   setNotification: (value: string) => void;
@@ -36,21 +37,29 @@ const CurrentReading = ({
   }
 
   return (
-    <div>
-      <div>Flow Rate</div>
-      <div>
+    <div className="CurrentReading">
+      <div className="CurrentReading_label">Flow Rate</div>
+      <div className="CurrentReading_value">
         {currentData.flowRate} m<sup>3</sup>/h
       </div>
-      <div>Energy Flow Rate</div>
-      <div>{currentData.energyFlowRate} GJ/h</div>
-      <div>Velocity</div>
-      <div>{currentData.velocity} m/s</div>
-      <div>Fluid Sound Speed</div>
-      <div>{currentData.fluidSoundSpeed} m/s</div>
-      <div>Inlet Temperature</div>
-      <div>{currentData.temperatureInlet} °C</div>
-      <div>Outlet Temperature</div>
-      <div>{currentData.temperatureOutlet} °C</div>
+      <div className="CurrentReading_label">Energy Flow Rate</div>
+      <div className="CurrentReading_value">
+        {currentData.energyFlowRate} GJ/h
+      </div>
+      <div className="CurrentReading_label">Velocity</div>
+      <div className="CurrentReading_value">{currentData.velocity} m/s</div>
+      <div className="CurrentReading_label">Fluid Sound Speed</div>
+      <div className="CurrentReading_value">
+        {currentData.fluidSoundSpeed} m/s
+      </div>
+      <div className="CurrentReading_label">Inlet Temperature</div>
+      <div className="CurrentReading_value">
+        {currentData.temperatureInlet} °C
+      </div>
+      <div className="CurrentReading_label">Outlet Temperature</div>
+      <div className="CurrentReading_value">
+        {currentData.temperatureOutlet} °C
+      </div>
     </div>
   );
 };

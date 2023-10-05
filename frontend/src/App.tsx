@@ -1,5 +1,12 @@
 import { FormEvent, useState, useEffect } from 'react';
-import { Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FlowHistory from './components/FlowHistory';
 import Settings from './components/Settings';
@@ -17,6 +24,15 @@ const App = () => {
   const [user, setUser] = useState<User | null>(null);
   const [notification, setNotification] = useState<string>('');
   const [notificationType, setNotificationColor] = useState<string>('');
+  const [currentLocation, setCurrentLocation] = useState<string>('/login');
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
+
+  console.log(location);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem(
@@ -71,70 +87,101 @@ const App = () => {
   return (
     <>
       <h1 className="App_title">Cooling Liquid Flow Rate</h1>
-      {user && (
-        <>
-          <p>{user.name} is logged in</p>
-          <nav className="App_navbar">
-            <Link to="/">Current Reading</Link>
-            <Link to="/flow-history">Flow History</Link>
-            <Link to="/settings">Settings</Link>
-            <button className="App_logoutButton" onClick={logoutHandler}>
-              Logout
-            </button>
-          </nav>
-        </>
-      )}
-      <Notification message={notification} type={notificationType} />
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            user ? (
-              <Navigate replace to="/" />
-            ) : (
-              <LoginPage
-                username={username}
-                password={password}
-                setPassword={setPassword}
-                setUsername={setUsername}
-                handleLogin={loginHandler}
-              />
-            )
-          }
-        />
-        <Route
-          path="/flow-history"
-          element={user ? <FlowHistory /> : <Navigate replace to="/login" />}
-        />
-        <Route
-          path="/settings"
-          element={user ? <Settings /> : <Navigate replace to="/login" />}
-        />
-        <Route
-          path="/current-reading"
-          element={
-            user ? (
-              <CurrentReading
-                setNotification={setNotification}
-                setNotificationColor={setNotificationColor}
-                logoutHandler={logoutHandler}
-              />
-            ) : (
-              <Navigate replace to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/"
-          element={
-            user ? (
-              <Navigate replace to="/current-reading" />
-            ) : (
-              <Navigate replace to="/login" />
-            )
-          }
-        />
-      </Routes>
+      <div className="App_container">
+        {user && (
+          <>
+            <div className="App_loggedUser">
+              <button className="App_logoutButton" onClick={logoutHandler}>
+                Logout
+              </button>
+              <p>{user.name} is logged in</p>
+            </div>
+            <nav className="App_navbar">
+              <Link
+                className={
+                  currentLocation === '/current-reading'
+                    ? 'App_navLink selected'
+                    : 'App_navLink'
+                }
+                to="/"
+              >
+                Current Reading
+              </Link>
+              <Link
+                className={
+                  currentLocation === '/flow-history'
+                    ? 'App_navLink selected'
+                    : 'App_navLink'
+                }
+                to="/flow-history"
+              >
+                Flow History
+              </Link>
+              <Link
+                className={
+                  currentLocation === '/settings'
+                    ? 'App_navLink selected'
+                    : 'App_navLink'
+                }
+                to="/settings"
+              >
+                Settings
+              </Link>
+            </nav>
+          </>
+        )}
+        <Notification message={notification} type={notificationType} />
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              user ? (
+                <Navigate replace to="/" />
+              ) : (
+                <LoginPage
+                  username={username}
+                  password={password}
+                  setPassword={setPassword}
+                  setUsername={setUsername}
+                  handleLogin={loginHandler}
+                />
+              )
+            }
+          />
+          <Route
+            path="/flow-history"
+            element={user ? <FlowHistory /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/settings"
+            element={user ? <Settings /> : <Navigate replace to="/login" />}
+          />
+          <Route
+            path="/current-reading"
+            element={
+              user ? (
+                <CurrentReading
+                  setNotification={setNotification}
+                  setNotificationColor={setNotificationColor}
+                  logoutHandler={logoutHandler}
+                />
+              ) : (
+                <Navigate replace to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/"
+            element={
+              user ? (
+                <Navigate replace to="/current-reading" />
+              ) : (
+                <Navigate replace to="/login" />
+              )
+            }
+          />
+        </Routes>
+      </div>
       <footer>&copy; Barbara Taskinen</footer>
     </>
   );
