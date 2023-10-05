@@ -1,29 +1,27 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import { Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FlowHistory from './components/FlowHistory';
 import Settings from './components/Settings';
 import CurrentReading from './components/CurrentReading';
+import { login } from './services/login';
+import { Data, LoginData, User } from './types';
 import './App.css';
-
-export type Data = {
-  flowRate: number;
-  energyFlowRate: number;
-  velocity: number;
-  fluidSoundSpeed: number;
-  temperatureInlet: number;
-  temperatureOutlet: number;
-  date: string;
-};
-
-type User = {
-  username: string;
-};
 
 const App = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem(
+      'loggedFlowMeterAppUser'
+    );
+    if (loggedUserJSON) {
+      const user: User = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
+  }, []);
 
   const currentData: Data = {
     flowRate: 0.75,
@@ -36,20 +34,28 @@ const App = () => {
   };
   const navigate = useNavigate();
 
-  const loginHandler = (event: FormEvent) => {
+  const loginHandler = async (event: FormEvent) => {
     event.preventDefault();
-    const loggedInUser: User = {
+
+    const userCredentials: LoginData = {
       username,
+      password,
     };
+
+    const loggedInUser: User = await login(userCredentials);
+    console.log(loggedInUser);
     setUser(loggedInUser);
-    console.log(user);
-    console.log(username, password);
+    window.localStorage.setItem(
+      'loggedFlowMeterAppUser',
+      JSON.stringify(loggedInUser)
+    );
     setUsername('');
     setPassword('');
     navigate('/');
   };
 
   const logoutHandler = () => {
+    window.localStorage.removeItem('loggedFlowMeterAppUser');
     setUser(null);
     navigate('/login');
   };
@@ -57,26 +63,34 @@ const App = () => {
   return (
     <>
       <h1>Cooling Liquid Flow Rate</h1>
-      {user && <p>{user.username} is logged in</p>}
-      <nav className="App_navbar">
-        <Link to="/">Current Reading</Link>
-        <Link to="/flow-history">Flow History</Link>
-        <Link to="/settings">Settings</Link>
-        <button className="App_logoutButton" onClick={logoutHandler}>
-          Logout
-        </button>
-      </nav>
+      {user && (
+        <>
+          <p>{user.name} is logged in</p>
+          <nav className="App_navbar">
+            <Link to="/">Current Reading</Link>
+            <Link to="/flow-history">Flow History</Link>
+            <Link to="/settings">Settings</Link>
+            <button className="App_logoutButton" onClick={logoutHandler}>
+              Logout
+            </button>
+          </nav>
+        </>
+      )}
       <Routes>
         <Route
           path="/login"
           element={
-            <LoginPage
-              username={username}
-              password={password}
-              setPassword={setPassword}
-              setUsername={setUsername}
-              handleLogin={loginHandler}
-            />
+            user ? (
+              <Navigate replace to="/" />
+            ) : (
+              <LoginPage
+                username={username}
+                password={password}
+                setPassword={setPassword}
+                setUsername={setUsername}
+                handleLogin={loginHandler}
+              />
+            )
           }
         />
         <Route
