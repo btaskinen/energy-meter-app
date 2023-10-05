@@ -17,7 +17,6 @@ const users = [
 ];
 
 loginRouter.post('/', async (request, response) => {
-  console.log(request.body);
   const { username, password } = request.body;
 
   if (!username || !password) {
