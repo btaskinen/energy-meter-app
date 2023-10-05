@@ -23,14 +23,14 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint);
 
 const errorHandler = (error, request, response, next) => {
-  console.error(error.message);
-
   if (error.name === 'TokenExpiredError') {
     return response.status(401).json({
       error: 'token expired',
     });
+  } else if (error.name === 'JsonWebTokenError') {
+    return response.status(400).json({ error: error.message });
   }
-
+  console.error(error.message);
   next(error);
 };
 
