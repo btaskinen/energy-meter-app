@@ -1,26 +1,56 @@
+import { useEffect, useState } from 'react';
 import { Data } from '../types';
+import flowDataServices from '../services/flow-data';
+import axios from 'axios';
 
 type Props = {
-  data: Data;
+  setNotification: (value: string) => void;
+  setNotificationColor: (value: string) => void;
+  logoutHandler: () => void;
 };
 
-const CurrentReading = ({ data }: Props) => {
+const CurrentReading = ({
+  setNotification,
+  setNotificationColor,
+  logoutHandler,
+}: Props) => {
+  const [currentData, setCurrentData] = useState<Data | null>(null);
+
+  useEffect(() => {
+    flowDataServices
+      .getCurrentFlowData()
+      .then((data) => setCurrentData(data))
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          setNotification(error.response?.data.error);
+        } else {
+          setNotification('An error occured.');
+        }
+        setNotificationColor('error');
+        logoutHandler();
+      });
+  }, [setNotification, setNotificationColor, logoutHandler]);
+
+  if (!currentData) {
+    return <p>No current data available</p>;
+  }
+
   return (
     <div>
       <div>Flow Rate</div>
       <div>
-        {data.flowRate} m<sup>3</sup>/h
+        {currentData.flowRate} m<sup>3</sup>/h
       </div>
       <div>Energy Flow Rate</div>
-      <div>{data.energyFlowRate} GJ/h</div>
+      <div>{currentData.energyFlowRate} GJ/h</div>
       <div>Velocity</div>
-      <div>{data.velocity} m/s</div>
+      <div>{currentData.velocity} m/s</div>
       <div>Fluid Sound Speed</div>
-      <div>{data.fluidSoundSpeed} m/s</div>
+      <div>{currentData.fluidSoundSpeed} m/s</div>
       <div>Inlet Temperature</div>
-      <div>{data.temperatureInlet} °C</div>
+      <div>{currentData.temperatureInlet} °C</div>
       <div>Outlet Temperature</div>
-      <div>{data.temperatureOutlet} °C</div>
+      <div>{currentData.temperatureOutlet} °C</div>
     </div>
   );
 };

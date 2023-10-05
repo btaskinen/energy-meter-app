@@ -4,8 +4,9 @@ import LoginPage from './components/LoginPage';
 import FlowHistory from './components/FlowHistory';
 import Settings from './components/Settings';
 import CurrentReading from './components/CurrentReading';
-import { login } from './services/login';
-import { Data, LoginData, User } from './types';
+import loginServices from './services/login';
+import flowDataServices from './services/flow-data';
+import { LoginData, User } from './types';
 import Notification from './components/Notification';
 import axios from 'axios';
 import './App.css';
@@ -23,19 +24,11 @@ const App = () => {
     );
     if (loggedUserJSON) {
       const user: User = JSON.parse(loggedUserJSON);
+      flowDataServices.setToken(user.token);
       setUser(user);
     }
   }, []);
 
-  const currentData: Data = {
-    flowRate: 0.75,
-    energyFlowRate: 18.5,
-    velocity: 0.63,
-    fluidSoundSpeed: 1657.1,
-    temperatureInlet: 7.1,
-    temperatureOutlet: 10.8,
-    date: new Date().toString(),
-  };
   const navigate = useNavigate();
 
   const loginHandler = async (event: FormEvent) => {
@@ -46,15 +39,18 @@ const App = () => {
       password,
     };
     try {
-      const loggedInUser: User = await login(userCredentials);
+      const loggedInUser: User = await loginServices.login(userCredentials);
       console.log(loggedInUser);
       setUser(loggedInUser);
       window.localStorage.setItem(
         'loggedFlowMeterAppUser',
         JSON.stringify(loggedInUser)
       );
+      flowDataServices.setToken(loggedInUser.token);
       setUsername('');
       setPassword('');
+      setNotification('');
+      setNotificationColor('');
       navigate('/');
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -118,7 +114,11 @@ const App = () => {
           path="/current-reading"
           element={
             user ? (
-              <CurrentReading data={currentData} />
+              <CurrentReading
+                setNotification={setNotification}
+                setNotificationColor={setNotificationColor}
+                logoutHandler={logoutHandler}
+              />
             ) : (
               <Navigate replace to="/login" />
             )
