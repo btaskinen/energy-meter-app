@@ -10,6 +10,18 @@ const getTokenFrom = (request) => {
   return null;
 };
 
+flowDataRouter.get('/', async (request, response, next) => {
+  try {
+    const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET);
+    if (!decodedToken.id) {
+      return response.status(401).json({ error: 'token invalid' });
+    }
+    response.json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 flowDataRouter.get('/current-data', async (request, response, next) => {
   try {
     const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET);
@@ -22,22 +34,5 @@ flowDataRouter.get('/current-data', async (request, response, next) => {
     next(error);
   }
 });
-
-flowDataRouter.get(
-  '/flow-history/flow-rate',
-  async (request, response, next) => {
-    try {
-      const decodedToken = jwt.verify(
-        getTokenFrom(request),
-        process.env.SECRET
-      );
-      if (!decodedToken.id) {
-        return response.status(401).json({ error: 'token invalid' });
-      }
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 
 module.exports = flowDataRouter;
