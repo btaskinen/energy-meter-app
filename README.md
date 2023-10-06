@@ -12,7 +12,7 @@ The [frontend](https://github.com/btaskinen/flow-meter-app/tree/main/frontend) i
 
 Ideally, the app would have access to a REST API as outlined in option 1. As this REST API was not available, the app works by connecting to a [Node.js Express server](https://github.com/btaskinen/flow-meter-app/tree/main/backend) that contains dummy data for the flow meter (The server was written in JavaScript, as figuring out the correct configuration for TypeScript took too long time). JEST was used to create tests to test the server.
 
-We assume that the server has access to the converted data from the flow meter. Could access it from a database. The data contains the follwing readings from the flow meter:
+We assume that the server has access to the converted data from the flow meter. Maybe accessing the data from a database. The data contains the follwing readings from the flow meter:
 
 - flow rate
 - energy flow rate
@@ -32,7 +32,7 @@ The default view after logging in is the latest data point from the flow meter. 
 
 ### "Flow History" View
 
-From the "Flow History" view, the user can observe the time dipendend fluctuation of the different measured values by selecting the respective category. The charts are drawn using Material UI Line Chart component.
+From the "Flow History" view, the user can observe the time dependend fluctuation of the different measured values by selecting the respective category. The charts are drawn using Material UI Line Chart component.
 
 ![screenshot of "Flow History" view](/screenshots/Screenshot%202023-10-06%20at%2014.20.20.png)
 
@@ -44,13 +44,13 @@ Not yet implemented.
 
 ### "Latest Reading" View
 
-- **Automatice data fetching at given interval**: Depending on how often the flow meter collectes a new data set, the app could automatically fetch the latest data at given time intervals. Alternatively a websocket connection could be established.
+- **Automate data fetching at given interval**: Depending on how often the flow meter collects a new data set, the app could automatically fetch the latest data at given time intervals. Alternatively a websocket connection could be established.
 
 ### "Flow History" View
 
-- **Stying of the line chart**: Styling of the MUI Line Chart component tured out to not be quite straight forward and will need some work to display the axis labels properly.
+- **Stying of the line chart**: Styling of the MUI Line Chart component turned out to not be quite straightforward and will need some work to display the axis labels properly.
 
-- **Addition of date picker**: The idea is that the user would be able to select a specific time interval for the data they want to see. Releated to this is the question whether the filtering of the selcted data would be handled on the frontend (meaning always getting all the data from the server) or on server side. Since we expect big amount of data to be collected by the flow meter, the data filtering would then need to be shifted to the backend.
+- **Addition of date picker**: The idea is that the user would be able to select a specific time interval for the data they want to see. Related to this is the question whether the filtering of the selected data would be handled on the frontend (meaning always getting all the data from the server) or on server side. Since we expect big amount of data to be collected by the flow meter, the data filtering would then need to be shifted to the backend.
 
 ### "Settings" View
 
@@ -58,9 +58,9 @@ The idea for the settings view is, that the user could specify value ranges for 
 
 ### General
 
-- **Frontend testing**: No tests have yet been created to test the frontend. The plan is to use end-to-end testing with Cypress.
+- **Frontend testing**: No tests have been created yet to test the frontend. The plan is to use end-to-end testing with Cypress.
 
-- **Connection to database**: Saving the user data on the server is not optimal and was chosen here due to time constrains. Optimally, the users would be saved to a database. This would the also allow for easy storage and retrival of the user specified value ranges in Settings. Maybe for this data, a NoSQL database like MongoDB would be suitable.
+- **Connection to database**: Saving the user data on the server is not optimal and was chosen here due to time constrains. Optimally, the users would be saved to a database. This would also allow for easy storage and retrival of the user specified value ranges in Settings. Maybe for this data, a NoSQL database like MongoDB would be suitable.
 
 - **Optimization for mobile view**: While the layout is fairly responsive, some optimization, especially in the display of the menu options, could be included to make the user experience better on a mobile device.
 
