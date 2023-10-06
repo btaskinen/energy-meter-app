@@ -1,15 +1,6 @@
 const jwt = require('jsonwebtoken');
 const flowDataRouter = require('express').Router();
-
-const currentData = {
-  flowRate: 0.75,
-  energyFlowRate: 18.5,
-  velocity: 0.63,
-  fluidSoundSpeed: 1657.1,
-  temperatureInlet: 7.1,
-  temperatureOutlet: 10.8,
-  date: new Date().toString(),
-};
+const data = require('../flow-data.json');
 
 const getTokenFrom = (request) => {
   const authorization = request.get('authorization');
@@ -25,10 +16,28 @@ flowDataRouter.get('/current-data', async (request, response, next) => {
     if (!decodedToken.id) {
       return response.status(401).json({ error: 'token invalid' });
     }
+    const currentData = data[data.length - 1];
     response.json(currentData);
   } catch (error) {
     next(error);
   }
 });
+
+flowDataRouter.get(
+  '/flow-history/flow-rate',
+  async (request, response, next) => {
+    try {
+      const decodedToken = jwt.verify(
+        getTokenFrom(request),
+        process.env.SECRET
+      );
+      if (!decodedToken.id) {
+        return response.status(401).json({ error: 'token invalid' });
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = flowDataRouter;

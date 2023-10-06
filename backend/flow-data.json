@@ -1,0 +1,182 @@
+[
+  {
+    "flowRate": 0.75,
+    "energyFlowRate": 18.5,
+    "velocity": 0.6,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.1,
+    "temperatureOutlet": 11.0,
+    "date": "Sun Sep 17 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.73,
+    "energyFlowRate": 19.6,
+    "velocity": 0.69,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.5,
+    "temperatureOutlet": 10.9,
+    "date": "Mon Sep 18 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.77,
+    "energyFlowRate": 19.5,
+    "velocity": 0.68,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.4,
+    "temperatureOutlet": 10.4,
+    "date": "Tue Sep 19 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.78,
+    "energyFlowRate": 18.3,
+    "velocity": 0.64,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.9,
+    "temperatureOutlet": 10.6,
+    "date": "Wed Sep 20 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.76,
+    "energyFlowRate": 18.9,
+    "velocity": 0.66,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.3,
+    "temperatureOutlet": 10.8,
+    "date": "Thu Sep 21 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.71,
+    "energyFlowRate": 19.3,
+    "velocity": 0.68,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.0,
+    "temperatureOutlet": 11.1,
+    "date": "Fri Sep 22 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.74,
+    "energyFlowRate": 18.4,
+    "velocity": 0.67,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.8,
+    "temperatureOutlet": 11.0,
+    "date": "Sat Sep 23 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.79,
+    "energyFlowRate": 18.8,
+    "velocity": 0.7,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.6,
+    "temperatureOutlet": 10.6,
+    "date": "Sun Sep 24 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.72,
+    "energyFlowRate": 18.9,
+    "velocity": 0.62,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.3,
+    "temperatureOutlet": 10.7,
+    "date": "Mon Sep 25 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.74,
+    "energyFlowRate": 19.0,
+    "velocity": 0.63,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.5,
+    "temperatureOutlet": 10.3,
+    "date": "Tue Sep 26 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.75,
+    "energyFlowRate": 18.8,
+    "velocity": 0.65,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.2,
+    "temperatureOutlet": 10.5,
+    "date": "Wed Sep 27 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.8,
+    "energyFlowRate": 18.7,
+    "velocity": 0.67,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.8,
+    "temperatureOutlet": 10.9,
+    "date": "Thu Sep 28 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.73,
+    "energyFlowRate": 18.4,
+    "velocity": 0.62,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.3,
+    "temperatureOutlet": 11.1,
+    "date": "Fri Sep 29 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.75,
+    "energyFlowRate": 18.2,
+    "velocity": 0.69,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.1,
+    "temperatureOutlet": 10.7,
+    "date": "Sat Sep 30 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.77,
+    "energyFlowRate": 18.7,
+    "velocity": 0.66,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.0,
+    "temperatureOutlet": 11.0,
+    "date": "Sun Oct 01 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.72,
+    "energyFlowRate": 19.1,
+    "velocity": 0.6,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.6,
+    "temperatureOutlet": 10.3,
+    "date": "Mon Oct 02 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.7,
+    "energyFlowRate": 18.6,
+    "velocity": 0.62,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.8,
+    "temperatureOutlet": 10.5,
+    "date": "Tue Oct 03 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.69,
+    "energyFlowRate": 18.8,
+    "velocity": 0.67,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 6.4,
+    "temperatureOutlet": 10.9,
+    "date": "Wed Oct 04 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.81,
+    "energyFlowRate": 18.1,
+    "velocity": 0.7,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.2,
+    "temperatureOutlet": 11.3,
+    "date": "Thu Oct 05 2023 08:43:53"
+  },
+  {
+    "flowRate": 0.78,
+    "energyFlowRate": 18.7,
+    "velocity": 0.63,
+    "fluidSoundSpeed": 1657.1,
+    "temperatureInlet": 7.3,
+    "temperatureOutlet": 10.8,
+    "date": "Fri Oct 06 2023 08:43:53"
+  }
+]
