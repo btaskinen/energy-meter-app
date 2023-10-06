@@ -22,7 +22,7 @@ flowDataRouter.get('/', async (request, response, next) => {
   }
 });
 
-flowDataRouter.get('/current-data', async (request, response, next) => {
+flowDataRouter.get('/latest-data', async (request, response, next) => {
   try {
     const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET);
     if (!decodedToken.id) {

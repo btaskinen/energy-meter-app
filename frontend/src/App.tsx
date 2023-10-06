@@ -10,7 +10,7 @@ import {
 import LoginPage from './components/LoginPage';
 import FlowHistory from './components/FlowHistory';
 import Settings from './components/Settings';
-import CurrentReading from './components/CurrentReading';
+import LatestReading from './components/LatestReading';
 import loginServices from './services/login';
 import flowDataServices from './services/flow-data';
 import { LoginData, User } from './types';
@@ -31,8 +31,6 @@ const App = () => {
   useEffect(() => {
     setCurrentLocation(location.pathname);
   }, [location]);
-
-  console.log(location);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem(
@@ -99,13 +97,13 @@ const App = () => {
             <nav className="App_navbar">
               <Link
                 className={
-                  currentLocation === '/current-reading'
+                  currentLocation === '/latest-reading'
                     ? 'App_navLink selected'
                     : 'App_navLink'
                 }
                 to="/"
               >
-                Current Reading
+                Latest Reading
               </Link>
               <Link
                 className={
@@ -157,10 +155,10 @@ const App = () => {
             element={user ? <Settings /> : <Navigate replace to="/login" />}
           />
           <Route
-            path="/current-reading"
+            path="/latest-reading"
             element={
               user ? (
-                <CurrentReading
+                <LatestReading
                   setNotification={setNotification}
                   setNotificationColor={setNotificationColor}
                   logoutHandler={logoutHandler}
@@ -174,7 +172,7 @@ const App = () => {
             path="/"
             element={
               user ? (
-                <Navigate replace to="/current-reading" />
+                <Navigate replace to="/latest-reading" />
               ) : (
                 <Navigate replace to="/login" />
               )

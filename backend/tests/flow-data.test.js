@@ -15,14 +15,14 @@ describe('testing fetching data from server', () => {
     const token = response.body.token;
 
     await api
-      .get('/api/flow-data/current-data')
+      .get('/api/flow-data/latest-data')
       .set('Authorization', `Bearer ${token}`)
       .expect(200)
       .expect('Content-Type', /application\/json/);
   });
 
   test('fetching data without authentication', async () => {
-    const response = await api.get('/api/flow-data/current-data').expect(400);
+    const response = await api.get('/api/flow-data/latest-data').expect(400);
     const returnedMessage = JSON.parse(response.text);
     expect(returnedMessage.error).toBe('jwt must be provided');
   });
