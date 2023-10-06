@@ -8,6 +8,8 @@ With the Flow Meter App, the user can monitor the flow rate of a fluid in a pipe
 
 The [frontend](https://github.com/btaskinen/flow-meter-app/tree/main/frontend) is a TypeScript React app that was build with Vite. Routing between different views is handlred by React Router.
 
+![screenshot of login page](/screenshots/Screenshot%202023-10-06%20at%2014.08.12.png)
+
 Ideally, the app would have access to a REST API as outlined in option 1. As this REST API was not available, the app works by connecting to a [Node.js Express server](https://github.com/btaskinen/flow-meter-app/tree/main/backend) that contains dummy data for the flow meter (The server was written in JavaScript, as figuring out the correct configuration for TypeScript took too long time). JEST was used to create tests to test the server.
 
 We assume that the server has access to the converted data from the flow meter. Could access it from a database. The data contains the follwing readings from the flow meter:
@@ -26,9 +28,13 @@ The user needs to authenticate to access the data. Authorization is handelt with
 
 The default view after logging in is the latest data point from the flow meter. From the dummy data, it is accessed, assuming that the newest mesurement point would always be the last item in the data array.
 
+![screenshot of "Latest Reading! view](/screenshots/Screenshot%202023-10-06%20at%2014.19.54.png)
+
 ### "Flow History" View
 
 From the "Flow History" view, the user can observe the time dipendend fluctuation of the different measured values by selecting the respective category. The charts are drawn using Material UI Line Chart component.
+
+![screenshot of "Flow History" view](/screenshots/Screenshot%202023-10-06%20at%2014.20.20.png)
 
 ### "Settings" View
 
@@ -59,3 +65,7 @@ The idea for the settings view is, that the user could specify value ranges for 
 - **Optimization for mobile view**: While the layout is fairly responsive, some optimization, especially in the display of the menu options, could be included to make the user experience better on a mobile device.
 
 - **Deployment**
+
+## App Demo
+
+![demo video of app](/screenshots/flow-meter-app-gif.gif)
