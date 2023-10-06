@@ -54,7 +54,6 @@ const App = () => {
     };
     try {
       const loggedInUser: User = await loginServices.login(userCredentials);
-      console.log(loggedInUser);
       setUser(loggedInUser);
       window.localStorage.setItem(
         'loggedFlowMeterAppUser',
@@ -148,7 +147,17 @@ const App = () => {
           />
           <Route
             path="/flow-history"
-            element={user ? <FlowHistory /> : <Navigate replace to="/login" />}
+            element={
+              user ? (
+                <FlowHistory
+                  setNotification={setNotification}
+                  setNotificationColor={setNotificationColor}
+                  logoutHandler={logoutHandler}
+                />
+              ) : (
+                <Navigate replace to="/login" />
+              )
+            }
           />
           <Route
             path="/settings"
