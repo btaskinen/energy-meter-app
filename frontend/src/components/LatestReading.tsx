@@ -43,7 +43,7 @@ const LatestReading = ({
         {latestData.flowRate} m<sup>3</sup>/h
       </div>
       <div className="LatestReading_label">Energy Flow Rate</div>
-      <div className="LatestReadingg_value">
+      <div className="LatestReading_value">
         {latestData.energyFlowRate} GJ/h
       </div>
       <div className="LatestReading_label">Velocity</div>
