@@ -23,7 +23,7 @@ const App = () => {
   const [password, setPassword] = useState<string>('');
   const [user, setUser] = useState<User | null>(null);
   const [notification, setNotification] = useState<string>('');
-  const [notificationType, setNotificationColor] = useState<string>('');
+  const [notificationType, setNotificationType] = useState<string>('');
   const [currentLocation, setCurrentLocation] = useState<string>('/login');
 
   const location = useLocation();
@@ -63,7 +63,7 @@ const App = () => {
       setUsername('');
       setPassword('');
       setNotification('');
-      setNotificationColor('');
+      setNotificationType('');
       navigate('/');
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -71,7 +71,7 @@ const App = () => {
       } else {
         setNotification('An error occured.');
       }
-      setNotificationColor('error');
+      setNotificationType('error');
     }
   };
 
@@ -151,7 +151,7 @@ const App = () => {
               user ? (
                 <FlowHistory
                   setNotification={setNotification}
-                  setNotificationColor={setNotificationColor}
+                  setNotificationType={setNotificationType}
                   logoutHandler={logoutHandler}
                 />
               ) : (
@@ -169,7 +169,7 @@ const App = () => {
               user ? (
                 <LatestReading
                   setNotification={setNotification}
-                  setNotificationColor={setNotificationColor}
+                  setNotificationType={setNotificationType}
                   logoutHandler={logoutHandler}
                 />
               ) : (

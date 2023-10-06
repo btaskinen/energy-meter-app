@@ -25,15 +25,9 @@ body {
   min-height: 100vh;
 }
 
-.App_title {
-  background-color: var(--colorDark);
-  color: #fff;
-  padding: var(--paddingM);
-  margin: 0;
-}
-
 p {
   margin: 0;
+  padding: var(--paddingS);
 }
 
 button {
@@ -82,6 +76,13 @@ footer {
   margin-top: auto;
 }
 
+.App_title {
+  background-color: var(--colorDark);
+  color: #fff;
+  padding: var(--paddingM);
+  margin: 0;
+}
+
 .App_container {
   width: min(90vw, 900px);
   padding: var(--paddingS);
@@ -103,7 +104,11 @@ footer {
   justify-content: space-between;
   align-items: center;
   font-style: italic;
-  padding: var(--paddingS);
+  padding: var(--paddingXXS);
+}
+
+.App_loggedUser > p {
+  padding: 0;
 }
 
 .App_navLink {

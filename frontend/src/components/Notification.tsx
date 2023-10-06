@@ -6,7 +6,12 @@ type Props = {
 };
 
 const Notification = ({ message, type }: Props) => {
-  return <div className={`Notification ${type}`}>{message}</div>;
+  const displaySetting = message === '' ? 'none' : 'block';
+  return (
+    <div style={{ display: displaySetting }} className={`Notification ${type}`}>
+      {message}
+    </div>
+  );
 };
 
 export default Notification;

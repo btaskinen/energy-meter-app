@@ -8,7 +8,7 @@ import './FlowHistory.css';
 
 type Props = {
   setNotification: (value: string) => void;
-  setNotificationColor: (value: string) => void;
+  setNotificationType: (value: string) => void;
   logoutHandler: () => void;
 };
 
@@ -31,7 +31,7 @@ type DispalyData = {
 
 const FlowHistory = ({
   setNotification,
-  setNotificationColor,
+  setNotificationType,
   logoutHandler,
 }: Props) => {
   const [allData, setAllData] = useState<Data[] | null>(null);
@@ -47,16 +47,14 @@ const FlowHistory = ({
         } else {
           setNotification('An error occured.');
         }
-        setNotificationColor('error');
+        setNotificationType('error');
         logoutHandler();
       });
-  }, [setNotification, setNotificationColor, logoutHandler]);
+  }, [setNotification, setNotificationType, logoutHandler]);
 
   if (!allData) {
     return <p>No data available</p>;
   }
-
-  console.log(allData);
 
   const selectDataHandler = (flowDataType: FlowDataType) => {
     let displayTimes: Date[];

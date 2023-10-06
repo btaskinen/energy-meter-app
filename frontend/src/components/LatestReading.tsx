@@ -6,13 +6,13 @@ import './LatestReading.css';
 
 type Props = {
   setNotification: (value: string) => void;
-  setNotificationColor: (value: string) => void;
+  setNotificationType: (value: string) => void;
   logoutHandler: () => void;
 };
 
 const LatestReading = ({
   setNotification,
-  setNotificationColor,
+  setNotificationType,
   logoutHandler,
 }: Props) => {
   const [latestData, setLatestData] = useState<Data | null>(null);
@@ -27,10 +27,10 @@ const LatestReading = ({
         } else {
           setNotification('An error occured.');
         }
-        setNotificationColor('error');
+        setNotificationType('error');
         logoutHandler();
       });
-  }, [setNotification, setNotificationColor, logoutHandler]);
+  }, [setNotification, setNotificationType, logoutHandler]);
 
   if (!latestData) {
     return <p>No data available</p>;

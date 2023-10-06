@@ -5,13 +5,13 @@ const users = [
   {
     username: 'JDoe',
     name: 'Jane Doe',
-    password: 'secret',
+    password: 'TheSecretPasswordOfJaneDoe',
     id: 1,
   },
   {
     username: 'TommyG',
     name: 'Thomas Gordon',
-    password: 'secret',
+    password: 'TheSecretPasswordOfThomasGordon',
     id: 2,
   },
 ];

@@ -40,3 +40,7 @@
   font-size: inherit;
   margin: var(--paddingXS);
 }
+
+.FlowHistory_chartContainer {
+  padding: var(--paddingM);
+}
